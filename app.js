@@ -1,7 +1,6 @@
 //jshint esversion:6
 const express= require("express");
 const bodyParser= require("body-parser");
-const port = 3000;
 const app= express();
 const date = require(__dirname +"/date.js");
 const mongoose = require("mongoose");
@@ -9,6 +8,11 @@ const _ = require("lodash");
 
 app.use(express.static("public"));
 app.set('view engine', 'ejs');
+
+let port = process.env.PORT;
+if (port == null || port == "") {
+  port = 3000;
+}
 
 app.listen(port,function(req,res){
   console.log("Server started");
